@@ -19,7 +19,7 @@ const EventEmitterOptions = {
 
 const DataBaseOptions = {
   connect(options) {
-    ipcRenderer.send('connected', options);
+    ipcRenderer.send('connect', options);
   },
 };
 

@@ -40,7 +40,8 @@ const DATEBASE_TYPES = [
 const Main = () => {
   const handleConnect = (options, callback) => {
     electron.ipcRenderer.once('connected', (args) => {
-      console.log('connected success', args);
+      console.log(args);
+
       callback();
     });
 
