@@ -39,9 +39,10 @@ const DATEBASE_TYPES = [
 
 const Main = () => {
   const handleConnect = (options, callback) => {
-    electron.ipcRenderer.once('connected', (args) => {
-      console.log(args);
-
+    electron.ipcRenderer.once('connected', () => {
+      callback();
+    });
+    electron.ipcRenderer.once('disconnected', () => {
       callback();
     });
 
@@ -53,10 +54,10 @@ const Main = () => {
       <Formik
         initialValues={{
           type: 'mysql',
-          address: '127.0.0.1',
-          port: '3306',
+          host: 'localhost',
+          port: 3306,
           database: 'test',
-          username: 'admin',
+          username: 'root',
           password: '123456',
         }}
         onSubmit={(values, actions) => {
@@ -84,14 +85,14 @@ const Main = () => {
               </Select>
             </FormControl>
             <FormControl width="80" mb="4" isRequired>
-              <FormLabel htmlFor="address">服务器地址</FormLabel>
+              <FormLabel htmlFor="host">服务器地址</FormLabel>
               <Input
                 size="sm"
-                id="address"
+                id="host"
                 type="text"
                 placeholder="输入服务器地址"
                 onChange={handleChange}
-                value={values.address}
+                value={values.host}
               />
             </FormControl>
             <FormControl width="80" mb="4" isRequired>

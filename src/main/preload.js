@@ -1,6 +1,6 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
-const validChannels = ['connected'];
+const validChannels = ['connected', 'disconnected', 'execute'];
 
 const EventEmitterOptions = {
   on(channel, func) {

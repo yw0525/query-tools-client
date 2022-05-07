@@ -226,6 +226,8 @@
     "formik": "^2.2.9",
     "framer-motion": "^6",
     "history": "^5.2.0",
+    "mysql": "^2.18.1",
+    "query-tools": "^0.0.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.1"
