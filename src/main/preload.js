@@ -21,6 +21,9 @@ const DataBaseOptions = {
   connect(options) {
     ipcRenderer.send('connect', options);
   },
+  close() {
+    ipcRenderer.send('close');
+  },
 };
 
 contextBridge.exposeInMainWorld('electron', {

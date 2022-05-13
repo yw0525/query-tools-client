@@ -26,6 +26,7 @@ export default class AppUpdater {
 
 let mainWindow: BrowserWindow | null = null;
 
+// init db service
 initDBService();
 
 if (process.env.NODE_ENV === 'production') {

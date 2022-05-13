@@ -33,7 +33,7 @@
     ]
   },
   "build": {
-    "productName": "electron-react-starter",
+    "productName": "queryTools",
     "appId": "heora",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
@@ -94,16 +94,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yw0525/electron-react-starter.git"
+    "url": "git+https://github.com/yw0525/database-connnect-fe.git"
   },
   "author": {
     "name": "heora",
     "email": "yueluo.yang@qq.com",
-    "url": "https://github.com/yw0525/electron-react-starter.git"
+    "url": "https://github.com/yw0525/database-connnect-fe.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yw0525/electron-react-starter/issues"
+    "url": "https://github.com/yw0525/database-connnect-fe/issues"
   },
   "keywords": [
     "electron",
@@ -116,7 +116,7 @@
     "hot",
     "reload"
   ],
-  "homepage": "https://github.com/yw0525/electron-react-starter#readme",
+  "homepage": "https://github.com/yw0525/database-connnect-fe#readme",
   "jest": {
     "testURL": "http://localhost/",
     "testEnvironment": "jsdom",

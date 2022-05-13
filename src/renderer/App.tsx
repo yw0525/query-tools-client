@@ -31,6 +31,7 @@ const Main = () => {
     });
     electron.ipcRenderer.once('disconnected', () => {
       callback();
+
       toast({
         position: 'top',
         title: '连接失败!',

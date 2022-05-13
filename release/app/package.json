@@ -1,12 +1,12 @@
 {
-  "name": "electron-react-starter",
+  "name": "database-connnect-fe",
   "version": "1.0.0",
   "description": "A foundation for scalable desktop apps",
   "main": "./dist/main/main.js",
   "author": {
     "name": "heora",
     "email": "yueluo.yang@qq.com",
-    "url": "https://github.com/yw0525/electron-react-starter.git"
+    "url": "https://github.com/yw0525/database-connnect-fe.git"
   },
   "scripts": {
     "electron-rebuild": "node -r ts-node/register ../../.erb/scripts/electron-rebuild.js",
