@@ -90,7 +90,11 @@
     },
     "extraResources": [
       "./assets/**"
-    ]
+    ],
+    "publish": {
+      "provider": "heora",
+      "url": ""
+    }
   },
   "repository": {
     "type": "git",

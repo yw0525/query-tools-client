@@ -33,7 +33,12 @@ export const dbService = () => {
 
   // close database
   ipcMain.on('disconnect', async () => {
-    await datasource.destroy();
+    try {
+      await datasource.destroy();
+      logger.info('[db disconnect]', 'success');
+    } catch (error) {
+      logger.info('[db disconnect]', 'failed', error);
+    }
   });
 };
 

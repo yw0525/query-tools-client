@@ -21,6 +21,10 @@ const Main = () => {
 
   const handleConnect = (options, callback) => {
     electron.ipcRenderer.once('conn-status', (status) => {
+      callback();
+
+      electron.ipcRenderer.disconnect();
+
       if (status) {
         toast({
           position: 'top',
@@ -36,7 +40,6 @@ const Main = () => {
           isClosable: true,
         });
       }
-      callback();
     });
 
     electron.ipcRenderer.connect(options);
