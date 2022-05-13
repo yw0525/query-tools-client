@@ -1,18 +1,20 @@
 {
   "name": "database-connnect-fe",
+  "productName": "queryTools",
   "version": "1.0.0",
   "description": "A foundation for scalable desktop apps",
   "main": "./dist/main/main.js",
   "author": {
     "name": "heora",
-    "email": "yueluo.yang@qq.com",
-    "url": "https://github.com/yw0525/database-connnect-fe.git"
+    "email": "yueluo.yang@qq.com"
   },
   "scripts": {
     "electron-rebuild": "node -r ts-node/register ../../.erb/scripts/electron-rebuild.js",
     "link-modules": "node -r ts-node/register ../../.erb/scripts/link-modules.ts",
     "postinstall": "npm run electron-rebuild && npm run link-modules"
   },
-  "dependencies": {},
+  "dependencies": {
+    "query-tools": "^0.0.5"
+  },
   "license": "MIT"
 }

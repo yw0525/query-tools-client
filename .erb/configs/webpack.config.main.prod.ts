@@ -43,6 +43,7 @@ const configuration: webpack.Configuration = {
     minimizer: [
       new TerserPlugin({
         parallel: true,
+        terserOptions: { mangle: false }
       }),
     ],
   },
