@@ -1,6 +1,6 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
-const validChannels = ['connected', 'disconnected', 'execute'];
+const validChannels = ['conn-status'];
 
 const EventEmitterOptions = {
   on(channel, func) {
@@ -10,9 +10,7 @@ const EventEmitterOptions = {
   },
   once(channel, func) {
     if (validChannels.includes(channel)) {
-      ipcRenderer.once(channel, (event, ...args) => {
-        func(...args);
-      });
+      ipcRenderer.once(channel, (event, ...args) => func(...args));
     }
   },
 };
@@ -21,8 +19,8 @@ const DataBaseOptions = {
   connect(options) {
     ipcRenderer.send('connect', options);
   },
-  close() {
-    ipcRenderer.send('close');
+  disconnect() {
+    ipcRenderer.send('disconnect');
   },
 };
 

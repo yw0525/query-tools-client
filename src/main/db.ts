@@ -3,34 +3,36 @@ import { ipcMain } from 'electron';
 const logger = require('electron-log');
 const { createDataSource } = require('query-tools/lib');
 
-let datasource;
+export const dbService = () => {
+  let datasource;
 
-export const initDBService = () => {
-  // 初始化数据库连接
+  // init database
   ipcMain.on('connect', async (event, options) => {
     logger.info('[db connect]', options);
 
     datasource = createDataSource(options);
+
     datasource
       .initialize()
       .then(() => {
         logger.info('[db connect]', 'success');
-        event.reply('connected');
+        event.reply('conn-status', true);
       })
       .catch((error) => {
         logger.info('[db connect]', 'failed', error);
-        event.reply('disconnected');
+        event.reply('conn-status', false);
       });
   });
 
-  // 执行 SQL
+  // execute sql
   ipcMain.on('execute', async (event, sqlStr) => {
     const result = await datasource.query(sqlStr);
-    event.reply('executeResult', result);
+    logger.info('[db execute]', result);
+    event.reply('result', result);
   });
 
-  // 关闭连接
-  ipcMain.on('close', async () => {
+  // close database
+  ipcMain.on('disconnect', async () => {
     await datasource.destroy();
   });
 };

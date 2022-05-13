@@ -159,43 +159,44 @@ export default class MenuBuilder {
       {
         label: '视图',
         submenu:
-          // process.env.NODE_ENV === 'development' ||
-          // process.env.DEBUG_PROD === 'true'
-          //   ?
-          [
-            {
-              label: '刷新',
-              accelerator: 'Ctrl+R',
-              click: () => {
-                this.mainWindow.webContents.reload();
-              },
-            },
-            {
-              label: '切换全屏',
-              accelerator: 'F11',
-              click: () => {
-                this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
-              },
-            },
-            {
-              label: '开发者工具',
-              accelerator: 'Alt+Ctrl+I',
-              click: () => {
-                this.mainWindow.webContents.toggleDevTools();
-              },
-            },
-          ],
-        // : [
-        //     {
-        //       label: '切换全屏',
-        //       accelerator: 'F11',
-        //       click: () => {
-        //         this.mainWindow.setFullScreen(
-        //           !this.mainWindow.isFullScreen()
-        //         );
-        //       },
-        //     },
-        //   ],
+          process.env.NODE_ENV === 'development' ||
+          process.env.DEBUG_PROD === 'true'
+            ? [
+                {
+                  label: '刷新',
+                  accelerator: 'Ctrl+R',
+                  click: () => {
+                    this.mainWindow.webContents.reload();
+                  },
+                },
+                {
+                  label: '切换全屏',
+                  accelerator: 'F11',
+                  click: () => {
+                    this.mainWindow.setFullScreen(
+                      !this.mainWindow.isFullScreen()
+                    );
+                  },
+                },
+                {
+                  label: '开发者工具',
+                  accelerator: 'Alt+Ctrl+I',
+                  click: () => {
+                    this.mainWindow.webContents.toggleDevTools();
+                  },
+                },
+              ]
+            : [
+                {
+                  label: '切换全屏',
+                  accelerator: 'F11',
+                  click: () => {
+                    this.mainWindow.setFullScreen(
+                      !this.mainWindow.isFullScreen()
+                    );
+                  },
+                },
+              ],
       },
       {
         label: '帮助',

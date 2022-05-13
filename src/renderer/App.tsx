@@ -20,24 +20,23 @@ const Main = () => {
   const toast = useToast();
 
   const handleConnect = (options, callback) => {
-    electron.ipcRenderer.once('connected', () => {
+    electron.ipcRenderer.once('conn-status', (status) => {
+      if (status) {
+        toast({
+          position: 'top',
+          title: '连接成功!',
+          status: 'success',
+          isClosable: true,
+        });
+      } else {
+        toast({
+          position: 'top',
+          title: '连接失败!',
+          status: 'error',
+          isClosable: true,
+        });
+      }
       callback();
-      toast({
-        position: 'top',
-        title: '连接成功!',
-        status: 'success',
-        isClosable: true,
-      });
-    });
-    electron.ipcRenderer.once('disconnected', () => {
-      callback();
-
-      toast({
-        position: 'top',
-        title: '连接失败!',
-        status: 'error',
-        isClosable: true,
-      });
     });
 
     electron.ipcRenderer.connect(options);
