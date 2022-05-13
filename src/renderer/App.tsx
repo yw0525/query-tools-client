@@ -7,43 +7,36 @@ import {
   Button,
   ButtonGroup,
   Select,
+  useToast,
 } from '@chakra-ui/react';
 import { Form, Formik } from 'formik';
+import { DATEBASE_TYPES } from './config';
 
 import './App.css';
 
 const { electron } = window;
 
-const DATEBASE_TYPES = [
-  {
-    label: 'MySQL',
-    value: 'mysql',
-  },
-  {
-    label: 'SQL Server',
-    value: 'mssql',
-  },
-  {
-    label: 'SQL Server 2000',
-    value: 'mssql2000',
-  },
-  {
-    label: 'Oracle',
-    value: 'orace',
-  },
-  {
-    label: 'Sybase',
-    value: 'sybase',
-  },
-];
-
 const Main = () => {
+  const toast = useToast();
+
   const handleConnect = (options, callback) => {
     electron.ipcRenderer.once('connected', () => {
       callback();
+      toast({
+        position: 'top',
+        title: '连接成功!',
+        status: 'success',
+        isClosable: true,
+      });
     });
     electron.ipcRenderer.once('disconnected', () => {
       callback();
+      toast({
+        position: 'top',
+        title: '连接失败!',
+        status: 'error',
+        isClosable: true,
+      });
     });
 
     electron.ipcRenderer.connect(options);
