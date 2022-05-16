@@ -1,4 +1,4 @@
-name: Build Electron App For Win/Mac
+name: Build
 
 on:
   push:
