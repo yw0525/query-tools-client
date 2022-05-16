@@ -1,18 +1,45 @@
-name: Build
+name: Build Electron App For Win/Mac
 
-on: workflow_dispatch
+on:
+  push:
+    tags:
+      - 'v*.*.*'
 
 jobs:
-  buildwin:
-    runs-on: windows-2022
-  steps:
-    - uses: actions/checkout@v2
+  release:
+    name: build and release electron app
 
-    - name: Install and Build
-      run: npm run package:win
+    runs-on: ${{ matrix.os }}
 
-    - name: Upload File
-      users: actions/upload-articfact@v2
-      with:
-        name: windows
-        path: release/build/*.exe
+    strategy:
+      matrix:
+        os: [windows-2019, macos-10.15]
+
+    steps:
+      - name: Check out git repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2-beta
+
+      - name: NPM install
+        run: |
+          npm install
+
+      - name: Build windows app
+        if: matrix.os === 'windows-2019'
+        run: |
+          npm run package:win
+
+      - name: Build mac app
+        if: marix.os === 'macos-10.15'
+        run: |
+          npm run package
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ martix.os }}
+          path: release/build
+        env:
+          GITHUB_TOKEN: ${{ secrets.UPLOAD_API_KEY }}
