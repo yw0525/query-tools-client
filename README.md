@@ -1,3 +1,3 @@
-## database-connect-fe
+## query-tools-client
 
-数据库连接测试客户端工具。
+数据库查询工具，客户端测试。

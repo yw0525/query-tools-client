@@ -1,5 +1,5 @@
 {
-  "name": "database-connect-fe",
+  "name": "query-tools-client",
   "description": "A foundation for scalable desktop apps",
   "scripts": {
     "cz": "git add ./ && git cz",
@@ -100,16 +100,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yw0525/database-connnect-fe.git"
+    "url": "git+https://github.com/yw0525/query-tools-client.git"
   },
   "author": {
     "name": "heora",
     "email": "yueluo.yang@qq.com",
-    "url": "https://github.com/yw0525/database-connnect-fe.git"
+    "url": "https://github.com/yw0525/query-tools-client.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yw0525/database-connnect-fe/issues"
+    "url": "https://github.com/yw0525/query-tools-client/issues"
   },
   "keywords": [
     "electron",
@@ -122,7 +122,7 @@
     "hot",
     "reload"
   ],
-  "homepage": "https://github.com/yw0525/database-connnect-fe#readme",
+  "homepage": "https://github.com/yw0525/query-tools-client#readme",
   "jest": {
     "testURL": "http://localhost/",
     "testEnvironment": "jsdom",
