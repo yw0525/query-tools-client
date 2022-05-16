@@ -92,8 +92,10 @@
       "./assets/**"
     ],
     "publish": {
-      "provider": "heora",
-      "url": ""
+      "provider": "github",
+      "owner": "yw0525",
+      "repo": "query-tools-client",
+      "releaseType": "release"
     }
   },
   "repository": {

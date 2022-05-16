@@ -1,0 +1,18 @@
+name: Build
+
+on: workflow_dispatch
+
+jobs:
+  buildwin:
+    runs-on: windows-2022
+  steps:
+    - uses: actions/checkout@v2
+
+    - name: Install and Build
+      run: npm run package:win
+
+    - name: Upload File
+      users: actions/upload-articfact@v2
+      with:
+        name: windows
+        path: release/build/*.exe
