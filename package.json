@@ -59,6 +59,7 @@
       "gatekeeperAssess": false
     },
     "dmg": {
+      "title": "${productName}_Setup-${version}",
       "contents": [
         {
           "x": 130,
