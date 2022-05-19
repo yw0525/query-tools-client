@@ -17,15 +17,22 @@ jobs:
         os: [windows-2019, macos-10.15]
 
     steps:
+      # step1：check out repos
       - name: check out git repository
         uses: actions/checkout@v2
+
+      # step2：install node env
 
       - name: install Node.js
         uses: actions/setup-node@v2-beta
 
+      # step3：npm install
+
       - name: npm install
         run: |
           npm install
+
+      # step4：build
 
       - name: build windows app
         if: matrix.os == 'windows-2019'
@@ -37,11 +44,27 @@ jobs:
         run: |
           npm run package
 
+      # step5: cleanup artifacts
+
+      - name: cleanup artifacts for windows
+        if: matix.os == 'windows-2019'
+        run: |
+          npx rimraf "release/build/!(*.exe)"
+
+      - name: cleanup artifacts for mac
+        if: matix.os == 'macos-10.15'
+        run: |
+          npx rimraf "release/build/!(*.dmg)"
+
+      # step6：upload artifacts
+
       - name: upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.os }}
           path: release/build
+
+      # step7：create release
 
       - name: create relasese
         uses: softprops/action-gh-release@v1
