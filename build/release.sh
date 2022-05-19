@@ -14,6 +14,7 @@ then
   fi
 
   # commit
+  cd release/app
   npm version $VERSION --message "release: $VERSION"
 
   # publish
