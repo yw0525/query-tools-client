@@ -1,7 +1,7 @@
 {
   "name": "query-tools-client",
   "productName": "queryTools",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "A foundation for scalable desktop apps",
   "main": "./dist/main/main.js",
   "author": {
