@@ -11,10 +11,12 @@ const logger = require('electron-log');
 const buildConnectOptions = (options: DataSourceOptions) => {
   switch (options.type) {
     case DatabaseType.ORACLE:
-      options.serviceName = options.database;
       oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
       oracledb.initOracleClient({ libDir: resolveOraclePath(OS.WIN64) });
-      return options;
+      return {
+        serviceName: options.database,
+        ...options,
+      };
       break;
     default:
       return options;
