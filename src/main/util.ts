@@ -31,10 +31,6 @@ if (process.env.NODE_ENV === 'development') {
   };
 
   resolveOraclePath = (os: string) => {
-    return path.resolve(
-      __dirname,
-      '../..',
-      `resources/lib/instantclient_11_2/${os}`
-    );
+    return path.resolve(__dirname, '../../..', `lib/instantclient_11_2/${os}`);
   };
 }

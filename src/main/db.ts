@@ -7,26 +7,36 @@ import { OS, resolveOraclePath } from './util';
 const oracledb = require('oracledb');
 const logger = require('electron-log');
 
-// 构建连接配置
+// 构建连接参数
 const buildConnectOptions = (options: DataSourceOptions) => {
-  switch (options.type) {
-    case DatabaseType.ORACLE:
-      oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
-      oracledb.initOracleClient({ libDir: resolveOraclePath(OS.WIN64) });
-      return {
-        serviceName: options.database,
-        ...options,
-      };
-      break;
-    default:
-      return options;
+  let oracleLibDir;
+
+  try {
+    switch (options.type) {
+      case DatabaseType.ORACLE:
+        oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
+
+        oracledb.initOracleClient({
+          libDir: ((oracleLibDir = resolveOraclePath(OS.WIN64)), oracleLibDir),
+        });
+
+        return {
+          serviceName: options.database,
+          ...options,
+        };
+      default:
+        return options;
+    }
+  } catch (error) {
+    logger.info('[db pre connect]', error);
+    return options;
   }
 };
 
 export const dbService = () => {
   let datasource: DataSource;
 
-  // init database
+  // 初始化数据库
   ipcMain.on('connect', async (event, options: DataSourceOptions) => {
     const datasourceOptions = buildConnectOptions(options);
 
@@ -46,14 +56,14 @@ export const dbService = () => {
       });
   });
 
-  // execute sql
+  // 执行 SQL
   ipcMain.on('execute', async (event, sqlStr) => {
     const result = await datasource.query(sqlStr);
     logger.info('[db execute]', result);
     event.reply('result', result);
   });
 
-  // close database
+  // 关闭数据库
   ipcMain.on('disconnect', async () => {
     try {
       if (datasource.isInitialized) {

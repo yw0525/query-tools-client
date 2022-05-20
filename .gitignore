@@ -1,3 +1,5 @@
+!.gitkeep
+
 # Logs
 logs
 *.log
@@ -32,8 +34,6 @@ npm-debug.log.*
 *.wakatime*
 
 # Database lib
-!.gitkeep
-
 lib/instantclient_11_2/win32/*
 lib/instantclient_11_2/win64/*
 
