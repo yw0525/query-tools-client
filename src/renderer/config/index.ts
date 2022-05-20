@@ -1,23 +1,25 @@
-export const DATEBASE_TYPES = [
+import { DatabaseType } from '../../typings';
+
+export const DATEBASE_CONNECTION_LIST = [
   {
     label: 'MySQL',
-    value: 'mysql',
+    value: DatabaseType.MYSQL,
   },
   {
     label: 'SQL Server',
-    value: 'mssql',
+    value: DatabaseType.SQL_SERVER,
   },
   {
     label: 'SQL Server 2000',
-    value: 'mssql2000',
+    value: DatabaseType.SQL_SERVER_2000,
   },
   {
     label: 'Oracle',
-    value: 'orace',
+    value: DatabaseType.ORACLE,
   },
   {
     label: 'Sybase',
-    value: 'sybase',
+    value: DatabaseType.SYBASE,
   },
 ];
 

@@ -10,7 +10,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { Form, Formik } from 'formik';
-import { DATEBASE_TYPES } from './config';
+import { DATEBASE_CONNECTION_LIST } from './config';
 
 import './App.css';
 
@@ -20,26 +20,27 @@ const Main = () => {
   const toast = useToast();
 
   const handleConnect = (options, callback) => {
-    electron.ipcRenderer.once('conn-status', (status) => {
+    electron.ipcRenderer.once('conn-status', (error) => {
       callback();
 
       electron.ipcRenderer.disconnect();
 
-      if (status) {
-        toast({
-          position: 'top',
-          title: '连接成功!',
-          status: 'success',
-          isClosable: true,
-        });
-      } else {
+      if (error) {
         toast({
           position: 'top',
           title: '连接失败!',
           status: 'error',
           isClosable: true,
         });
+        return;
       }
+
+      toast({
+        position: 'top',
+        title: '连接成功!',
+        status: 'success',
+        isClosable: true,
+      });
     });
 
     electron.ipcRenderer.connect(options);
@@ -73,7 +74,7 @@ const Main = () => {
                 onChange={handleChange}
                 value={values.type}
               >
-                {DATEBASE_TYPES.map((type) => (
+                {DATEBASE_CONNECTION_LIST.map((type) => (
                   <option key={type.label} value={type.value}>
                     {type.label}
                   </option>

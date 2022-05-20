@@ -30,3 +30,6 @@ npm-debug.log.*
 
 # Wakatime
 *.wakatime*
+
+# Database lib
+lib/instantclient_11_2
