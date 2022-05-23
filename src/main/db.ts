@@ -8,7 +8,7 @@ const oracledb = require('oracledb');
 const logger = require('electron-log');
 
 // 构建连接参数
-const buildConnectOptions = (options: DataSourceOptions) => {
+const buildConnectOptions = (options: DataSourceOptions): DataSourceOptions => {
   let oracleLibDir;
 
   try {
@@ -24,6 +24,15 @@ const buildConnectOptions = (options: DataSourceOptions) => {
           serviceName: options.database,
           ...options,
         };
+      case DatabaseType.SQL_SERVER_2000:
+        return {
+          ...options,
+          type: DatabaseType.SQL_SERVER,
+          options: {
+            tdsVersion: '7_1',
+          },
+        };
+        break;
       default:
         return options;
     }
